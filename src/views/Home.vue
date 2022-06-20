@@ -17,6 +17,15 @@ export default {
   data() {
     return {
       column: [
+        {
+          type: 'function',
+          label: 'URL地址',
+          prop: 'data',
+          callback: (data) => {
+            console.log(data)
+            return `<a href="http://www.baidu.com">${data.name}</a>`
+          }
+        },
         { label: '日期', prop: 'date', width: 500 },
         { label: '名称', prop: 'name' },
         { label: '地址', prop: 'address' },

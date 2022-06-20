@@ -15,14 +15,28 @@
       width="40"
     >
     </el-table-column>
-    <el-table-column
-      v-for="item in column"
-      :key="item.prop"
-      :prop="item.prop"
-      :label="item.label"
-      :width="item.width"
-    >
-    </el-table-column>
+    <template v-for="item in column">
+      <el-table-column
+        v-if="item.type === 'function'"
+        :key="item.prop"
+        :prop="item.prop"
+        :label="item.label"
+        :width="item.width"
+      >
+        <template slot-scope="scope">
+          <div v-html="item.callback && item.callback(scope.row)"></div>
+        </template>
+      </el-table-column>
+      <el-table-column
+        v-else
+        :key="item.prop"
+        :prop="item.prop"
+        :label="item.label"
+        :width="item.width"
+      >
+      </el-table-column>
+    </template>
+
   </el-table>
 </template>
 
