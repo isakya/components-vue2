@@ -4,10 +4,23 @@
     style="width: 100%"
   >
     <el-table-column
+      v-if="index"
+      type="index"
+      width="40"
+    >
+    </el-table-column>
+    <el-table-column
+      v-if="checkbox"
+      type="selection"
+      width="40"
+    >
+    </el-table-column>
+    <el-table-column
       v-for="item in column"
       :key="item.prop"
       :prop="item.prop"
       :label="item.label"
+      :width="item.width"
     >
     </el-table-column>
   </el-table>
@@ -20,7 +33,9 @@ export default {
     column: {
       type: Array,
       default: () => []
-    }
+    },
+    checkbox: Boolean,
+    index: Boolean
   },
   data() {
     return {

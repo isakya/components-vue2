@@ -1,6 +1,10 @@
 <template>
   <div>
-    <i-table :column="column"></i-table>
+    <i-table
+      :column="column"
+      :checkbox="false"
+      :index="true"
+    ></i-table>
   </div>
 </template>
 
@@ -13,7 +17,7 @@ export default {
   data() {
     return {
       column: [
-        { label: '日期', prop: 'date' },
+        { label: '日期', prop: 'date', width: 500 },
         { label: '名称', prop: 'name' },
         { label: '地址', prop: 'address' },
         { label: '性别', prop: 'sex' },
