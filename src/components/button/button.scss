@@ -1,0 +1,124 @@
+$primary: #409eff !default;
+$success: #00d100 !default;
+$warning: #e6a23c !default;
+$error: #f56c6c !default;
+$button-space: 14px !default;
+$button-round: 4px !default;
+
+.i-button {
+  padding: 0 20px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #dcdfe6;
+  border-radius: $button-round;
+  background-color: #fff;
+  font-size: 14px;
+  color: #606266;
+  height: 40px;
+  // 兄弟元素会添加边距 第一个就不会有边距
+  + .i-button {
+    margin-left: $button-space;
+  }
+  > span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  i {
+    width: 14px;
+    height: 14px;
+  }
+  .icon-prefix {
+    margin-right: 10px;
+  }
+  .icon-suffix {
+    margin-left: 10px;
+  }
+}
+.i-button-medium {
+  height: 36px;
+}
+.i-button-small {
+  padding: 0 15px;
+  height: 32px;
+  font-size: 12px;
+  .icon-prefix {
+    margin-right: 5px;
+  }
+  .icon-suffix {
+    margin-left: 5px;
+  }
+}
+.i-button-mini {
+  padding: 0 15px;
+  height: 28px;
+  font-size: 12px;
+  .icon-prefix {
+    margin-right: 5px;
+  }
+  .icon-suffix {
+    margin-left: 5px;
+  }
+}
+.i-button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.i-button-primary {
+  background-color: $primary;
+  border-color: $primary;
+  color: #fff;
+  &.is-border {
+    background-color: transparent;
+    color: $primary;
+  }
+}
+.i-button-success {
+  background-color: $success;
+  border-color: $success;
+  color: #fff;
+  &.is-border {
+    background-color: transparent;
+    color: $success;
+  }
+}
+.i-button-warning {
+  background-color: $warning;
+  border-color: $warning;
+  color: #fff;
+  &.is-border {
+    background-color: transparent;
+    color: $warning;
+  }
+}
+.i-button-error {
+  background-color: $error;
+  border-color: $error;
+  color: #fff;
+  &.is-border {
+    background-color: transparent;
+    color: $error;
+  }
+}
+
+// 圆角
+.is-round {
+  border-radius: 100px;
+}
+// 块级按钮
+.is-block {
+  display: block;
+  width: 100%;
+}
+// 加载动画
+.icon-loading {
+  animation: loading 2s infinite linear;
+}
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
