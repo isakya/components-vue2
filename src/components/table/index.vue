@@ -18,13 +18,28 @@
     <template v-for="item in column">
       <el-table-column
         v-if="item.type === 'function'"
-        :key="item.prop"
+        :key="item.prop + 1"
         :prop="item.prop"
         :label="item.label"
         :width="item.width"
       >
         <template slot-scope="scope">
           <div v-html="item.callback && item.callback(scope.row)"></div>
+        </template>
+      </el-table-column>
+      <el-table-column
+        v-if="item.type === 'slot'"
+        :key="item.prop"
+        :prop="item.prop"
+        :label="item.label"
+        :width="item.width"
+      >
+        <template slot-scope="scope">
+          <!-- 注意info自定义名称，但不能跟key有所重复 -->
+          <slot
+            :name="item.slot_name"
+            :info="scope.row"
+          />
         </template>
       </el-table-column>
       <el-table-column
@@ -36,7 +51,6 @@
       >
       </el-table-column>
     </template>
-
   </el-table>
 </template>
 
@@ -58,7 +72,8 @@ export default {
           date: '2016-05-02',
           name: '王小虎',
           address: '上海市普陀区金沙江路 1518 弄',
-          sex: '男'
+          sex: '男',
+          id: 20
         }, {
           date: '2016-05-04',
           name: '王小虎',
