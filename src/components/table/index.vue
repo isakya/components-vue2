@@ -63,6 +63,10 @@
 
 <script>
 // 自动化的规则，通过type属性，自动读取目录组件
+// true 是读取子目录
+// 参数3 是指定读取某个文件
+const files = require.context('../control', true, /\\index.vue$/)
+console.log(files)
 export default {
   name: 'Table',
   props: {
