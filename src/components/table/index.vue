@@ -62,6 +62,7 @@
 </template>
 
 <script>
+// 自动化的规则，通过type属性，自动读取目录组件
 export default {
   name: 'Table',
   props: {
