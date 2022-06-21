@@ -2,6 +2,7 @@
   <el-table
     :data="tableData"
     style="width: 100%"
+    @sort-change="sortChange"
   >
     <el-table-column
       v-if="index"
@@ -17,6 +18,8 @@
     </el-table-column>
     <template v-for="item in column">
       <el-table-column
+        :sortable="item.sort"
+        :sort-by="item.sort_by"
         v-if="item.type === 'function'"
         :key="item.prop + 1"
         :prop="item.prop"
@@ -28,6 +31,8 @@
         </template>
       </el-table-column>
       <el-table-column
+        :sortable="item.sort"
+        :sort-by="item.sort_by"
         v-else-if="item.type === 'slot'"
         :key="item.prop"
         :prop="item.prop"
@@ -43,6 +48,8 @@
         </template>
       </el-table-column>
       <el-table-column
+        :sort-by="item.sort_by"
+        :sortable="item.sort"
         v-else
         :key="item.prop"
         :prop="item.prop"
@@ -130,6 +137,15 @@ export default {
     },
     handlerRequest() {
       this.getTableList()
+    },
+    // 远程排序
+    sortChange({ column, prop, order }) {
+      console.log(column, prop, order)
+      // 根据后端给的条件进行排序
+      // sort_by 是后端所需要排序的一些关键字
+      const sort_by = column.sortBy
+      // 根据条件调用接口拉取数据
+      console.log(sort_by, order)
     }
   }
 }

@@ -62,7 +62,7 @@ export default {
           },
         },
         { label: '日期', prop: 'date', width: 500 },
-        { label: '名称', prop: 'name' },
+        { label: '名称', prop: 'name', sort: true },
         { label: '地址', prop: 'address' },
         {
           type: 'slot',
@@ -72,8 +72,8 @@ export default {
         },
       ],
       column_data: [
-        { label: 'id', prop: 'id' },
-        { label: 'title', prop: 'title' },
+        { label: 'id', prop: 'id', sort: 'custom', sort_by: 'aaaaa' },
+        { label: 'title', prop: 'title', sort: true },
         {
           type: 'function',
           label: '图片',
@@ -111,7 +111,8 @@ export default {
     },
     // 数据格式化方法
     formatData(data) {
-      const first_data = [data[0]]
+      // const first_data = [data[0]]
+      const first_data = data
       return first_data
     },
     jump(data) {
