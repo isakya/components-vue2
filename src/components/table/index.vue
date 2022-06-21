@@ -18,6 +18,7 @@
     </el-table-column>
     <template v-for="item in column">
       <el-table-column
+        :render-header="item.render_header"
         :sortable="item.sort"
         :sort-by="item.sort_by"
         v-if="item.type === 'function'"
@@ -31,6 +32,7 @@
         </template>
       </el-table-column>
       <el-table-column
+        :render-header="item.render_header"
         :sortable="item.sort"
         :sort-by="item.sort_by"
         v-else-if="item.type === 'slot'"
@@ -48,6 +50,7 @@
         </template>
       </el-table-column>
       <el-table-column
+        :render-header="item.render_header"
         :sort-by="item.sort_by"
         :sortable="item.sort"
         v-else
@@ -69,6 +72,7 @@ const files = require.context('../control', true, /\\index.vue$/)
 console.log(files)
 export default {
   name: 'Table',
+
   props: {
     column: {
       type: Array,

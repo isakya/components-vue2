@@ -68,11 +68,19 @@ export default {
           type: 'slot',
           label: '操作',
           prop: 'operation',
-          slot_name: 'operation'
+          slot_name: 'operation',
         },
+
       ],
       column_data: [
-        { label: 'id', prop: 'id', sort: 'custom', sort_by: 'aaaaa' },
+        {
+          label: 'id', prop: 'id', sort: 'custom', sort_by: 'aaaaa',
+          render_header: (h, { column, $index }) => {
+            return (
+              <div>自定义渲染表头</div>
+            )
+          }
+        },
         { label: 'title', prop: 'title', sort: true },
         {
           type: 'function',
