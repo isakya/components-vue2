@@ -65,6 +65,7 @@ export default {
     checkbox: Boolean,
     index: Boolean,
     onLoad: Boolean,
+    format: Function, // 格式化数据函数
     initRequest: {
       type: Boolean,
       default: true
@@ -116,7 +117,13 @@ export default {
       }
       // 接口请求
       this.$axios(request_data).then(res => {
-        this.tableData = res.data.result.list
+        let request_data = res.data.result.list
+        // 判断格式化数据的函数是否存在
+        if (this.format && typeof this.format === 'function') {
+          // 数据格式化
+          request_data = this.format(request_data)
+        }
+        this.tableData = request_data
         // 将请求数据返回给父组件
         this.onLoad && this.$emit('onLoad', res.data.result.list, 9999)
       })

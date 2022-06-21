@@ -24,6 +24,7 @@
       :checkbox="false"
       onLoad
       @onLoad="onLoad"
+      :format="formatData"
       :index="true"
       url="https://api.apiopen.top/api/getImages?page=0&size=5"
     >
@@ -107,6 +108,11 @@ export default {
     // 拿到子组件请求接口的数据
     onLoad(data) {
       console.log(data)
+    },
+    // 数据格式化方法
+    formatData(data) {
+      const first_data = [data[0]]
+      return first_data
     },
     jump(data) {
       console.log(data)
