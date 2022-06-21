@@ -64,6 +64,7 @@ export default {
     },
     checkbox: Boolean,
     index: Boolean,
+    onLoad: Boolean,
     initRequest: {
       type: Boolean,
       default: true
@@ -116,7 +117,8 @@ export default {
       // 接口请求
       this.$axios(request_data).then(res => {
         this.tableData = res.data.result.list
-        console.log(this.tableData)
+        // 将请求数据返回给父组件
+        this.onLoad && this.$emit('onLoad', res.data.result.list, 9999)
       })
     },
     handlerRequest() {

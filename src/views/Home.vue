@@ -6,7 +6,7 @@
       :checkbox="false"
       :index="true"
       url="https://api.apiopen.top/api/getImages?page=0&size=5"
-      :method="post"
+      method="get"
       :data="data_1"
       :params="params_1"
       :init-request="false"
@@ -22,6 +22,8 @@
     <i-table
       :column="column_data"
       :checkbox="false"
+      onLoad
+      @onLoad="onLoad"
       :index="true"
       url="https://api.apiopen.top/api/getImages?page=0&size=5"
     >
@@ -102,6 +104,10 @@ export default {
     }, 2000)
   },
   methods: {
+    // 拿到子组件请求接口的数据
+    onLoad(data) {
+      console.log(data)
+    },
     jump(data) {
       console.log(data)
     }
