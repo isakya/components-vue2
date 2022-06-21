@@ -68,11 +68,20 @@
 // 自动化的规则，通过type属性，自动读取目录组件
 // true 是读取子目录
 // 参数3 是指定读取某个文件
-const files = require.context('../control', true, /\\index.vue$/)
-console.log(files)
+const files = require.context('../control', true, /\index.vue$/)
+const modules = {}
+files.keys().forEach(item => {
+  const key = item.split('/')
+  const name = key[1]
+  // 组件集成
+  modules[`com-${name}`] = files(item).default
+})
+
 export default {
   name: 'Table',
-
+  components: {
+    ...modules
+  },
   props: {
     column: {
       type: Array,
