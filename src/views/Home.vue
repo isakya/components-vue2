@@ -4,9 +4,9 @@
       :column="column"
       :checkbox="false"
       :index="true"
+      url="https://api.apiopen.top/api/getImages?page=0&size=5"
     >
       <template v-slot:operation="slot">
-        {{slot.info.id}}
         <i-button
           type="primary"
           @click="jump(slot.info.id)"
@@ -39,6 +39,16 @@ export default {
         { label: '日期', prop: 'date', width: 500 },
         { label: '名称', prop: 'name' },
         { label: '地址', prop: 'address' },
+        {
+          type: 'slot',
+          label: '操作',
+          prop: 'operation',
+          slot_name: 'operation'
+        },
+      ],
+      column_data: [
+        { label: '姓名', prop: 'name' },
+        { label: '性别', prop: 'gender' },
         {
           type: 'slot',
           label: '操作',

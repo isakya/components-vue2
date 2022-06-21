@@ -63,31 +63,40 @@ export default {
       default: () => []
     },
     checkbox: Boolean,
-    index: Boolean
+    index: Boolean,
+    url: {
+      type: String,
+      default: '',
+      require: true
+    },
+    methos: {
+      type: String,
+      default: 'get',
+      require: true
+    }
   },
   data() {
     return {
-      tableData: [
-        {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄',
-          sex: '男',
-          id: 20
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1517 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1519 弄'
-        }, {
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1516 弄'
-        }
-      ]
+      tableData: []
+    }
+  },
+  beforeMount() {
+    this.getTableList()
+  },
+  methods: {
+    getTableList() {
+      const url = this.url
+      if (!url) {
+        console.log('请求地址不存在')
+        return false
+      }
+      this.$axios({
+        url: url,
+        methos: this.methos
+      }).then(res => {
+        this.tableData = res.data.result.list
+        console.log(this.tableData)
+      })
     }
   }
 }
