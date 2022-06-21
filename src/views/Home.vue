@@ -1,6 +1,6 @@
 <template>
   <div>
-    <i-table
+    <!-- <i-table
       ref="table"
       :column="column"
       :checkbox="false"
@@ -18,7 +18,7 @@
         >编辑</i-button>
         <i-button>删除</i-button>
       </template>
-    </i-table>
+    </i-table> -->
     <i-table
       :column="column_data"
       :checkbox="false"
@@ -52,32 +52,31 @@ export default {
   },
   data() {
     return {
-      column: [
-        {
-          type: 'function',
-          label: 'URL地址',
-          prop: 'data',
-          callback: (data) => {
-            return `<a href="http://www.baidu.com">${data.name}</a>`
-          },
-        },
-        { label: '日期', prop: 'date', width: 500 },
-        { label: '名称', prop: 'name', sort: true },
-        { label: '地址', prop: 'address' },
-        {
-          type: 'slot',
-          label: '操作',
-          prop: 'operation',
-          slot_name: 'operation',
-        },
-
-      ],
+      // column: [
+      //   {
+      //     type: 'function',
+      //     label: 'URL地址',
+      //     prop: 'data',
+      //     callback: (data) => {
+      //       return `<a href="http://www.baidu.com">${data.name}</a>`
+      //     },
+      //   },
+      //   { label: '日期', prop: 'date', width: 500 },
+      //   { label: '名称', prop: 'name', sort: true },
+      //   { label: '地址', prop: 'address' },
+      //   {
+      //     type: 'slot',
+      //     label: '操作',
+      //     prop: 'operation',
+      //     slot_name: 'operation',
+      //   },
+      // ],
       column_data: [
         {
           label: 'id', prop: 'id', sort: 'custom', sort_by: 'aaaaa',
           render_header: (h, { column, $index }) => {
             return (
-              <div>自定义渲染表头</div>
+              <div>自定义渲染表头id</div>
             )
           }
         },
@@ -88,11 +87,11 @@ export default {
           prop: 'url',
           callback: (data) => {
             console.log(data)
-            return `<img src="${data.url}" alt="">`
+            return `<a>${data}</a>`
           },
         },
         {
-          type: 'slot',
+          // type: 'slot',
           label: '操作',
           prop: 'operation',
           slot_name: 'operation'
@@ -107,11 +106,11 @@ export default {
       }
     }
   },
-  mounted() {
-    setTimeout(() => {
-      this.$refs.table.handlerRequest()
-    }, 2000)
-  },
+  // mounted() {
+  //   setTimeout(() => {
+  //     this.$refs.table.handlerRequest()
+  //   }, 2000)
+  // },
   methods: {
     // 拿到子组件请求接口的数据
     onLoad(data) {

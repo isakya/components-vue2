@@ -21,17 +21,22 @@
         :render-header="item.render_header"
         :sortable="item.sort"
         :sort-by="item.sort_by"
-        v-if="item.type === 'function'"
-        :key="item.prop + 1"
+        :key="item.prop +1"
         :prop="item.prop"
         :label="item.label"
         :width="item.width"
       >
         <template slot-scope="scope">
-          <div v-html="item.callback && item.callback(scope.row)"></div>
+          <!-- 动态生成不同类型的组件 -->
+          <component
+            :data="scope.row"
+            :config="item"
+            :prop="item.prop"
+            :is="!item.type ? 'com-text' : `com-${item.type}`"
+          />
         </template>
       </el-table-column>
-      <el-table-column
+      <!-- <el-table-column
         :render-header="item.render_header"
         :sortable="item.sort"
         :sort-by="item.sort_by"
@@ -41,9 +46,9 @@
         :label="item.label"
         :width="item.width"
       >
-        <template slot-scope="scope">
-          <!-- 注意info自定义名称，但不能跟key有所重复 -->
-          <slot
+        <template slot-scope="scope"> -->
+      <!-- 注意info自定义名称，但不能跟key有所重复 -->
+      <!-- <slot
             :name="item.slot_name"
             :info="scope.row"
           />
@@ -59,7 +64,7 @@
         :label="item.label"
         :width="item.width"
       >
-      </el-table-column>
+      </el-table-column> -->
     </template>
   </el-table>
 </template>

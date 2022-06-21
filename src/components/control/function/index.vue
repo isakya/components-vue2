@@ -1,10 +1,10 @@
 <template>
-  <div>123</div>
+  <div>function</div>
 </template>
 
 <script>
 export default {
-
+  name: 'ComFunction'
 }
 </script>
 
