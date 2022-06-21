@@ -28,7 +28,7 @@
         </template>
       </el-table-column>
       <el-table-column
-        v-if="item.type === 'slot'"
+        v-else-if="item.type === 'slot'"
         :key="item.prop"
         :prop="item.prop"
         :label="item.label"
@@ -64,15 +64,27 @@ export default {
     },
     checkbox: Boolean,
     index: Boolean,
+    initRequest: {
+      type: Boolean,
+      default: true
+    },
     url: {
       type: String,
       default: '',
       require: true
     },
-    methos: {
+    method: {
       type: String,
       default: 'get',
       require: true
+    },
+    data: {
+      type: Object,
+      default: () => ({})
+    },
+    params: {
+      type: Object,
+      default: () => ({})
     }
   },
   data() {
@@ -81,7 +93,7 @@ export default {
     }
   },
   beforeMount() {
-    this.getTableList()
+    this.initRequest && this.getTableList()
   },
   methods: {
     getTableList() {
@@ -90,13 +102,25 @@ export default {
         console.log('请求地址不存在')
         return false
       }
-      this.$axios({
+      const request_data = {
         url: url,
-        methos: this.methos
-      }).then(res => {
+        method: this.method
+      }
+      // 参数处理
+      if (JSON.stringify(this.data) !== '{}') {
+        request_data.data = this.data
+      }
+      if (JSON.stringify(this.params) !== '{}') {
+        request_data.params = this.params
+      }
+      // 接口请求
+      this.$axios(request_data).then(res => {
         this.tableData = res.data.result.list
         console.log(this.tableData)
       })
+    },
+    handlerRequest() {
+      this.getTableList()
     }
   }
 }
