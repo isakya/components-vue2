@@ -91,7 +91,7 @@ export default {
           },
         },
         {
-          // type: 'slot',
+          type: 'slot',
           label: '操作',
           prop: 'operation',
           slot_name: 'operation'

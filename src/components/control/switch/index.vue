@@ -1,5 +1,5 @@
 <template>
-  <div>switch</div>
+  <div>滑动块</div>
 </template>
 
 <script>

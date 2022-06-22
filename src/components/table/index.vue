@@ -16,56 +16,35 @@
       width="40"
     >
     </el-table-column>
-    <template v-for="item in column">
-      <el-table-column
-        :render-header="item.render_header"
-        :sortable="item.sort"
-        :sort-by="item.sort_by"
-        :key="item.prop +1"
-        :prop="item.prop"
-        :label="item.label"
-        :width="item.width"
-      >
-        <template slot-scope="scope">
-          <!-- 动态生成不同类型的组件 -->
-          <component
-            :data="scope.row"
-            :config="item"
-            :prop="item.prop"
-            :is="!item.type ? 'com-text' : `com-${item.type}`"
-          />
-        </template>
-      </el-table-column>
-      <!-- <el-table-column
-        :render-header="item.render_header"
-        :sortable="item.sort"
-        :sort-by="item.sort_by"
-        v-else-if="item.type === 'slot'"
-        :key="item.prop"
-        :prop="item.prop"
-        :label="item.label"
-        :width="item.width"
-      >
-        <template slot-scope="scope"> -->
-      <!-- 注意info自定义名称，但不能跟key有所重复 -->
-      <!-- <slot
-            :name="item.slot_name"
-            :info="scope.row"
-          />
-        </template>
-      </el-table-column>
-      <el-table-column
-        :render-header="item.render_header"
-        :sort-by="item.sort_by"
-        :sortable="item.sort"
-        v-else
-        :key="item.prop"
-        :prop="item.prop"
-        :label="item.label"
-        :width="item.width"
-      >
-      </el-table-column> -->
-    </template>
+    <el-table-column
+      v-for="item in column"
+      :render-header="item.render_header"
+      :sortable="item.sort"
+      :sort-by="item.sort_by"
+      :key="item.prop +1"
+      :prop="item.prop"
+      :label="item.label"
+      :width="item.width"
+    >
+      <template slot-scope="scope">
+
+        <!-- 动态生成不同类型的组件 -->
+        <!-- 插槽渲染 -->
+        <slot
+          v-if="item.type === 'slot'"
+          :name="item.slot_name"
+          :info="scope.row"
+        />
+        <!-- 其他渲染 -->
+        <component
+          v-else
+          :data="scope.row"
+          :config="item"
+          :prop="item.prop"
+          :is="!item.type ? 'com-text' : `com-${item.type}`"
+        />
+      </template>
+    </el-table-column>
   </el-table>
 </template>
 
