@@ -2,7 +2,6 @@
   <i-form
     :item="form_item"
     :field="form_field"
-    :rules="form_rules"
   ></i-form>
 </template>
 
@@ -15,17 +14,17 @@ export default {
   data() {
     return {
       form_item: [
-        { type: 'input', prop: 'name', label: '姓名' },
+        {
+          type: 'input',
+          prop: 'name',
+          label: '姓名',
+          required: true
+        },
         { type: 'select', prop: 'gender', label: '性别' }
       ],
       form_field: {
         name: '',
         gender: ' '
-      },
-      form_rules: {
-        name: [
-          { required: true, message: '必填' }
-        ]
       }
     }
   },

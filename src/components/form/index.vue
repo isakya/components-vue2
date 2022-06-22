@@ -2,7 +2,6 @@
   <el-form
     ref="form"
     :model="field"
-    :rules="rules"
     label-width="80px"
   >
     <template v-for="item in item">
@@ -10,6 +9,7 @@
         v-if="item.type === 'input'"
         :key="item.prop"
         :label="item.label"
+        :rules="item.rules"
         :prop="item.prop"
       >
         <el-input v-model="field[item.prop]"></el-input>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import createRules from './createRules'
 export default {
   name: 'Form',
   props: {
@@ -37,15 +38,14 @@ export default {
     field: {
       type: Object,
       default: () => ({})
-    },
-    rules: {
-      type: Object,
-      default: () => ({})
     }
   },
   data() {
     return {
     }
+  },
+  beforeMount() {
+    this.form_item = createRules(this.item)
   },
   methods: {
   }
