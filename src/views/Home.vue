@@ -18,9 +18,15 @@ export default {
           type: 'input',
           prop: 'name',
           label: '姓名',
-          required: true
+          required: true,
+          message: '请输入姓名'
         },
-        { type: 'select', prop: 'gender', label: '性别' }
+        {
+          type: 'select',
+          prop: 'gender',
+          label: '性别',
+          required: true
+        }
       ],
       form_field: {
         name: '',

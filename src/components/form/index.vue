@@ -17,6 +17,7 @@
       <el-form-item
         v-if="item.type === 'select'"
         :key="item.prop"
+        :rules="item.rules"
         :label="item.label"
         :prop="item.prop"
       >
