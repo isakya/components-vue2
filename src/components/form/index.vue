@@ -2,6 +2,7 @@
   <el-form
     ref="form"
     :model="field"
+    :rules="rules"
     label-width="80px"
   >
     <template v-for="item in item">
@@ -9,7 +10,7 @@
         v-if="item.type === 'input'"
         :key="item.prop"
         :label="item.label"
-        prop="name"
+        :prop="item.prop"
       >
         <el-input v-model="field[item.prop]"></el-input>
       </el-form-item>
@@ -17,7 +18,7 @@
         v-if="item.type === 'select'"
         :key="item.prop"
         :label="item.label"
-        prop="name"
+        :prop="item.prop"
       >
         <el-select v-model="field[item.prop]"></el-select>
       </el-form-item>
@@ -34,6 +35,10 @@ export default {
       default: () => ([])
     },
     field: {
+      type: Object,
+      default: () => ({})
+    },
+    rules: {
       type: Object,
       default: () => ({})
     }

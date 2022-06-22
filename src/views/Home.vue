@@ -2,6 +2,7 @@
   <i-form
     :item="form_item"
     :field="form_field"
+    :rules="form_rules"
   ></i-form>
 </template>
 
@@ -20,6 +21,11 @@ export default {
       form_field: {
         name: '',
         gender: ' '
+      },
+      form_rules: {
+        name: [
+          { required: true, message: '必填' }
+        ]
       }
     }
   },
