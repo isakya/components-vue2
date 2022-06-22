@@ -1,10 +1,29 @@
 <template>
-  <div>function</div>
+  <div v-html="config.callback && config.callback(data)">function</div>
 </template>
 
 <script>
 export default {
-  name: 'ComFunction'
+  name: 'ComFunction',
+  props: {
+    prop: {
+      type: String,
+      default: ''
+    },
+    data: {
+      type: Object,
+      default: () => ({})
+    },
+    config: {
+      type: Object,
+      default: () => ({})
+    }
+  },
+  data() {
+    return {
+
+    }
+  }
 }
 </script>
 
