@@ -45,6 +45,7 @@ export default {
           required: true,
           init_request: true,
           fetch_search: true, // 代表需要远程搜索
+          keyword: 'title',
           props: {
             label: 'title',
             value: 'id'

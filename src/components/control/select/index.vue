@@ -71,6 +71,10 @@ export default {
     // 远程搜索 
     fetchSearch() {
       return this.config?.fetch_search
+    },
+    // 搜索字段
+    keyword() {
+      return this.config?.keyword || 'keyword'
     }
   },
   methods: {
@@ -112,17 +116,22 @@ export default {
     // 异步关键字请求
     keywordRequest(query) {
       if (query) {
-        this.getOption()
+        this.getOption(query)
       }
-      console.log(query)
     },
     // 获取option列表
-    getOption() {
+    getOption(value) {
       const request_data = {
         url: this.url,
         method: this.method
       }
-
+      // 参数处理
+      if (this.method === 'get') {
+        request_data.params = value ? { [this.keyword]: value } : {}
+      }
+      if (this.method === 'post') {
+        request_data.data = value ? { [this.keyword]: value } : {}
+      }
       // 接口请求
       this.$axios(request_data).then(res => {
         this.option = res.data.result.list
