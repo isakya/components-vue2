@@ -2,6 +2,7 @@
   <i-form
     :item="form_item"
     :field="form_field"
+    :button="form_button"
   ></i-form>
 </template>
 
@@ -34,6 +35,13 @@ export default {
           label: '性别',
           required: true
         }
+      ],
+      // 表单提交按钮
+      form_button: [
+        // 确定按钮、取消按钮、其他按钮
+        { label: '确定', key: 'submit', type: 'primary' },
+        { label: '取消', key: 'cancel', type: 'danger' },
+        { label: '下一步', key: 'next', type: 'primary' }
       ],
       form_field: {
         name: '',

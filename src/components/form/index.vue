@@ -24,6 +24,13 @@
         <el-select v-model="field[item.prop]"></el-select>
       </el-form-item>
     </template>
+    <el-form-item>
+      <el-button
+        v-for="item in button"
+        :key="item.key"
+        :type="item.type"
+      >{{item.label}}</el-button>
+    </el-form-item>
   </el-form>
 </template>
 
@@ -39,6 +46,10 @@ export default {
     field: {
       type: Object,
       default: () => ({})
+    },
+    button: {
+      type: Array,
+      default: () => ([])
     }
   },
   data() {
