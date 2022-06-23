@@ -44,7 +44,12 @@ export default {
           label: '教室',
           required: true,
           init_request: true,
-          url: '',
+          fetch_search: true, // 代表需要远程搜索
+          props: {
+            label: 'title',
+            value: 'id'
+          },
+          url: 'https://api.apiopen.top/api/getImages?page=0&size=5',
           method: 'get'
         }
       ],

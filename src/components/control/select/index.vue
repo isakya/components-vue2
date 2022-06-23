@@ -2,6 +2,9 @@
   <el-select
     v-model="val"
     @change="handlerChange"
+    :remote-method="keywordRequest"
+    filterable
+    remote
   >
     <el-option
       v-for="item in option"
@@ -54,6 +57,22 @@ export default {
       immediate: true
     },
   },
+  computed: {
+    // 拿到url
+    url() {
+      return this.config?.url
+    },
+    initRequest() {
+      return this.config?.init_request
+    },
+    method() {
+      return this.config?.method || 'get'
+    },
+    // 远程搜索 
+    fetchSearch() {
+      return this.config?.fetch_search
+    }
+  },
   methods: {
     handlerChange(value) {
       // 同步更新父组件所绑定的字段的值
@@ -73,29 +92,42 @@ export default {
         }
       }
     },
-
     // 初始化下拉数据
     initOptions() {
-      const url = this.config.url
-      if (url) {
+      // 判断是否需要异步请求数据
+      if (this.url) {
         this.fetchOption()
         return false
       }
-
-
-
       const option = this.config.options
       if (option && Array.isArray(option) && option.length > 0) {
         this.option = option
       }
     },
-    // 异步请求
+    // 异步请求列表方法
     fetchOption() {
-      const init_request = this.config.init_request
-      const url = this.config.url
-      const method = this.config.method
-      console.log(init_request, url, method)
+      if (!this.initRequest) return false
+      this.getOption()
     },
+    // 异步关键字请求
+    keywordRequest(query) {
+      if (query) {
+        this.getOption()
+      }
+      console.log(query)
+    },
+    // 获取option列表
+    getOption() {
+      const request_data = {
+        url: this.url,
+        method: this.method
+      }
+
+      // 接口请求
+      this.$axios(request_data).then(res => {
+        this.option = res.data.result.list
+      })
+    }
   }
 }
 </script>
