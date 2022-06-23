@@ -1,12 +1,16 @@
 const createRules = (data) => {
   data.forEach(item => {
     // 检测规则是一个数组类型
-    const rules_arr = []
+    let rules_arr = []
     if (item.required) {
       const rule = { required: true, message: item.message || createMessage(item) }
       rules_arr.push(rule)
-      item.rules = rules_arr
     }
+    // 是否有额外的校验规则
+    if (item.rules && Array.isArray(item.rules) && item.rules.length > 0) {
+      rules_arr = rules_arr.concat(item.rules)
+    }
+    item.rules = rules_arr
     console.log(item)
   })
   return data
