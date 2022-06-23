@@ -23,17 +23,11 @@
 </template>
 
 <script>
+import { props } from '../basis'
 export default {
   name: 'SelectComponent',
   props: {
-    config: {
-      type: Object,
-      default: () => ({})
-    },
-    value: {
-      type: [String, Number],
-      default: ''
-    }
+    ...props
   },
   data() {
     return {

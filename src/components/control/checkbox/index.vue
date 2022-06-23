@@ -1,25 +1,4 @@
 <template>
-  <!-- <el-select
-    v-model="val"
-    @change="handlerChange"
-    :remote-method="keywordRequest"
-    :filterable="fetchSearch"
-    :remote="fetchSearch"
-    :multiple="multiple"
-    :collapse-tags="multiple"
-  >
-    <el-option
-      v-for="item in option"
-      :key="item.value"
-      :value="item[props.value]"
-      :label="item[props.label]"
-    >
-      <slot
-        name="select"
-        :data="item"
-      ></slot>
-    </el-option>
-  </el-select> -->
   <el-checkbox-group
     v-model="val"
     @change="handlerChange"
@@ -33,17 +12,12 @@
 </template>
 
 <script>
+
+import { props } from '../basis'
 export default {
   name: 'CheckboxComponent',
   props: {
-    config: {
-      type: Object,
-      default: () => ({})
-    },
-    value: {
-      type: [String, Number, Array],
-      default: ''
-    }
+    ...props
   },
   data() {
     return {
@@ -83,18 +57,6 @@ export default {
     method() {
       return this.config?.method || 'get'
     },
-    // 远程搜索 
-    fetchSearch() {
-      return this.config?.fetch_search
-    },
-    // 搜索字段
-    keyword() {
-      return this.config?.keyword || 'keyword'
-    },
-    // 多选
-    multiple() {
-      return this.config?.multiple
-    }
   },
   methods: {
     handlerChange(value) {
@@ -135,13 +97,6 @@ export default {
     fetchOption() {
       if (!this.initRequest) return false
       this.getOption()
-    },
-    // 异步关键字请求
-    keywordRequest(query) {
-      // this.fetchSearch 为true则需要远程搜索
-      if (query && this.fetchSearch) {
-        this.getOption(query)
-      }
     },
     // 获取option列表
     getOption(value) {
