@@ -29,6 +29,7 @@
         v-for="item in button"
         :key="item.key"
         :type="item.type"
+        @click="handlerBtn(item)"
       >{{item.label}}</el-button>
     </el-form-item>
   </el-form>
@@ -60,6 +61,24 @@ export default {
     this.form_item = createRules(this.item)
   },
   methods: {
+    handlerBtn(data) {
+      if (data.key === 'submit') {
+        this.submit()
+      }
+      if (data.key === 'cancel') {
+        this.cancel()
+      }
+    },
+    submit() {
+      this.$refs['form'].validate((valid) => {
+        if (valid) {
+          console.log('提交')
+        }
+      })
+    },
+    cancel() {
+      console.log('取消')
+    }
   }
 }
 </script>
