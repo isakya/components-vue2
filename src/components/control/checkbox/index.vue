@@ -21,11 +21,11 @@
     </el-option>
   </el-select> -->
   <el-checkbox-group v-model="val">
-    <el-checkbox label="复选框 A"></el-checkbox>
-    <el-checkbox label="复选框 B"></el-checkbox>
-    <el-checkbox label="复选框 C"></el-checkbox>
-    <el-checkbox label="禁用"></el-checkbox>
-    <el-checkbox label="选中且禁用"></el-checkbox>
+    <el-checkbox
+      :label="item[props.value]"
+      v-for="item in option"
+      :key="item[props.value]"
+    >{{item[props.label]}}</el-checkbox>
   </el-checkbox-group>
 </template>
 
@@ -38,7 +38,7 @@ export default {
       default: () => ({})
     },
     value: {
-      type: [String, Number],
+      type: [String, Number, Array],
       default: ''
     }
   },
