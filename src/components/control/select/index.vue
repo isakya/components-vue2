@@ -3,8 +3,8 @@
     v-model="val"
     @change="handlerChange"
     :remote-method="keywordRequest"
-    filterable
-    remote
+    :filterable="fetchSearch"
+    :remote="fetchSearch"
   >
     <el-option
       v-for="item in option"
@@ -115,7 +115,8 @@ export default {
     },
     // 异步关键字请求
     keywordRequest(query) {
-      if (query) {
+      // this.fetchSearch 为true则需要远程搜索
+      if (query && this.fetchSearch) {
         this.getOption(query)
       }
     },
