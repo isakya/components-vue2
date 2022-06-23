@@ -12,6 +12,13 @@ export default {
     'i-form': () => import('@/components/form')
   },
   data() {
+    const validateName = (rule, value, callback) => {
+      if (value && value !== '100') {
+        callback(new Error('请输入100'))
+      } else {
+        callback()
+      }
+    }
     return {
       form_item: [
         {
@@ -21,7 +28,8 @@ export default {
           required: true,
           message: '请输入姓名',
           rules: [
-            { min: 3, max: 10, message: '请输入3~10个字符', trigger: 'blur' }
+            { min: 3, max: 10, message: '请输入3~10个字符', trigger: 'blur' },
+            { validator: validateName, trigger: 'blur' }
           ]
         },
         {
