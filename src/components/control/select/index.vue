@@ -14,7 +14,10 @@
       :value="item[props.value]"
       :label="item[props.label]"
     >
-      {{item[props.label]}}
+      <slot
+        name="select"
+        :data="item"
+      ></slot>
     </el-option>
   </el-select>
 </template>
@@ -81,7 +84,6 @@ export default {
     // 多选
     multiple() {
       return this.config?.multiple
-
     }
   },
   methods: {

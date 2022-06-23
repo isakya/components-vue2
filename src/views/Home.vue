@@ -4,14 +4,19 @@
     :field="form_field"
     :button="form_button"
     :beforeSubmit="submitForm"
-  ></i-form>
+  >
+    <template v-slot:classroom>
+      <i-select :config="select_classroom"></i-select>
+    </template>
+  </i-form>
 </template>
 
 <script>
 export default {
   name: 'Home',
   components: {
-    'i-form': () => import('@/components/form')
+    'i-form': () => import('@/components/form'),
+    'i-select': () => import('@/components/control/select')
   },
   data() {
     return {
@@ -39,20 +44,11 @@ export default {
           ]
         },
         {
-          type: 'select',
+          type: 'slot',
+          slot_name: 'classroom',
           prop: 'class_room1',
           label: '教室',
           required: true,
-          init_request: true,
-          fetch_search: true, // 代表需要远程搜索
-          keyword: 'title',
-          multiple: true,
-          props: {
-            label: 'title',
-            value: 'id'
-          },
-          url: 'https://api.apiopen.top/api/getImages?page=0&size=5',
-          method: 'get'
         }
       ],
       // 表单提交按钮
@@ -73,6 +69,18 @@ export default {
       form_field: {
         phone: '13333333333',
         class_room: ''
+      },
+      select_classroom: {
+        init_request: true,
+        fetch_search: true, // 代表需要远程搜索
+        keyword: 'title',
+        multiple: true,
+        props: {
+          label: 'title',
+          value: 'id'
+        },
+        url: 'https://api.apiopen.top/api/getImages?page=0&size=5',
+        method: 'get'
       }
     }
   },

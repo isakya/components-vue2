@@ -11,7 +11,12 @@
         :rules="item.rules"
         :prop="item.prop"
       >
+        <slot
+          v-if="item.type === 'slot'"
+          :name="item.slot_name"
+        ></slot>
         <component
+          v-else
           :value.sync="field[item.prop]"
           :config="item"
           :is="!item.type ? 'com-text' : `com-${item.type}`"
