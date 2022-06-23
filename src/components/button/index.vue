@@ -1,5 +1,6 @@
 <template>
   <button
+    type="button"
     @click="change"
     :style="[minWidthCss]"
     class="i-button"

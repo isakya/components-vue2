@@ -41,12 +41,20 @@ export default {
       form_button: [
         // 确定按钮、取消按钮、其他按钮
         { label: '确定', key: 'submit', type: 'primary' },
-        { label: '取消', key: 'cancel', type: 'danger' },
-        { label: '下一步', key: 'next', type: 'primary' }
+        {
+          label: '重置', key: 'cancel', type: 'error', callback: (data) => {
+            this.cancel(data)
+          }
+        },
+        {
+          label: '下一步', key: 'next', type: 'primary', callback: (data) => {
+            this.next(data)
+          }
+        }
       ],
       form_field: {
         name: '',
-        gender: ' '
+        gender: ''
       }
     }
   },
@@ -62,6 +70,12 @@ export default {
         //   reject()
         // })
       })
+    },
+    next(data) {
+      console.log('下一步', data)
+    },
+    cancel(data) {
+      console.log('取消', data)
     }
   }
 }

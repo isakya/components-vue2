@@ -25,13 +25,15 @@
       </el-form-item>
     </template>
     <el-form-item>
-      <el-button
+      <i-button
         :loading="item.loading"
         v-for="item in button"
         :key="item.key"
         :type="item.type"
         @click="handlerBtn(item)"
-      >{{item.label}}</el-button>
+      >
+        {{item.label}}
+      </i-button>
     </el-form-item>
   </el-form>
 </template>
@@ -40,6 +42,9 @@
 import createRules from './createRules'
 export default {
   name: 'Form',
+  components: {
+    'i-button': () => import('@/components/button/index.vue')
+  },
   props: {
     item: {
       type: Array,
@@ -66,10 +71,14 @@ export default {
     handlerBtn(data) {
       if (data.key === 'submit') {
         this.submit(data)
+        return false
       }
       if (data.key === 'cancel') {
         this.cancel(data)
+        return false
       }
+      // 其他按钮
+      data.callback && data.callback(data)
     },
     submit(data) {
       this.$refs['form'].validate((valid) => {
@@ -89,7 +98,11 @@ export default {
         }
       })
     },
-    cancel() {
+    cancel(data) {
+      // 重置表单
+      this.$refs['form'].resetFields()
+      // 取消时需要执行的事件
+      data.callback && data.callback(data)
       console.log('取消')
     }
   }
