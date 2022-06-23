@@ -48,6 +48,16 @@ export default {
           ]
         },
         {
+          type: 'checkbox',
+          prop: 'food',
+          label: '食物',
+          options: [
+            { label: '鸡蛋', value: 1 },
+            { label: '苹果', value: 2 },
+            { label: '胡萝卜', value: 3 },
+          ]
+        },
+        {
           type: 'slot',
           slot_name: 'classroom',
           slot_type: 'select',
@@ -74,7 +84,8 @@ export default {
       form_field: {
         phone: '13333333333',
         class_room: '',
-        class_room1: ''
+        class_room1: '',
+        food: []
       },
       select_classroom: {
         init_request: true,
