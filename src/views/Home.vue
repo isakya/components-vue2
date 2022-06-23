@@ -53,7 +53,7 @@ export default {
         }
       ],
       form_field: {
-        name: '',
+        phone: '13333333333',
         gender: ''
       }
     }
