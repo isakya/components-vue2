@@ -59,6 +59,17 @@ export default {
           ]
         },
         {
+          type: 'radio',
+          prop: 'car',
+          required: true,
+          label: '交通工具',
+          options: [
+            { label: '公交车', value: 1 },
+            { label: '高铁', value: 2 },
+            { label: '飞机', value: 3 },
+          ]
+        },
+        {
           type: 'slot',
           slot_name: 'classroom',
           slot_type: 'select',
@@ -86,7 +97,8 @@ export default {
         phone: '13333333333',
         class_room: '',
         class_room1: '',
-        food: []
+        food: [1, 2],
+        car: 1
       },
       select_classroom: {
         init_request: true,

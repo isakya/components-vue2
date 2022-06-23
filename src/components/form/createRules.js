@@ -34,6 +34,7 @@ const createMessage = (data) => {
       break
     case 'select':
     case 'checkbox':
+    case 'radio':
       msg = '请选择'
       break
   }

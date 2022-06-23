@@ -1,14 +1,14 @@
 <template>
-  <el-checkbox-group
+  <el-radio-group
     v-model="val"
     @change="handlerChange"
   >
-    <el-checkbox
+    <el-radio
       :label="item[props.value]"
       v-for="item in option"
       :key="item[props.value]"
-    >{{item[props.label]}}</el-checkbox>
-  </el-checkbox-group>
+    >{{item[props.label]}}</el-radio>
+  </el-radio-group>
 </template>
 
 <script>
@@ -24,7 +24,8 @@ export default {
     return {
       val: '',
     }
-  }
+  },
+
 }
 </script>
 
