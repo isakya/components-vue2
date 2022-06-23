@@ -3,6 +3,7 @@
     :item="form_item"
     :field="form_field"
     :button="form_button"
+    :beforeSubmit="submitForm"
   ></i-form>
 </template>
 
@@ -50,7 +51,18 @@ export default {
     }
   },
   methods: {
-
+    submitForm() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve()
+        }, 2000)
+        // this.$axios.post().then(res => {
+        //   resolve()
+        // }).catch(() => {
+        //   reject()
+        // })
+      })
+    }
   }
 }
 </script>

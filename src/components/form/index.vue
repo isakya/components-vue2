@@ -26,6 +26,7 @@
     </template>
     <el-form-item>
       <el-button
+        :loading="item.loading"
         v-for="item in button"
         :key="item.key"
         :type="item.type"
@@ -51,7 +52,8 @@ export default {
     button: {
       type: Array,
       default: () => ([])
-    }
+    },
+    beforeSubmit: Function
   },
   data() {
     return {
@@ -63,15 +65,26 @@ export default {
   methods: {
     handlerBtn(data) {
       if (data.key === 'submit') {
-        this.submit()
+        this.submit(data)
       }
       if (data.key === 'cancel') {
-        this.cancel()
+        this.cancel(data)
       }
     },
-    submit() {
+    submit(data) {
       this.$refs['form'].validate((valid) => {
         if (valid) {
+          if (typeof this.beforeSubmit === 'function') {
+            this.$set(data, 'loading', true)
+            this.beforeSubmit().then(response => {
+              console.log('成功')
+              this.$set(data, 'loading', false)
+            }).catch(() => {
+              console.log('失败')
+              this.$set(data, 'loading', false)
+            })
+          }
+          this.$set(data, 'loading', true)
           console.log('提交')
         }
       })
