@@ -28,10 +28,14 @@ export default {
           prop: 'class_room',
           label: '教室',
           required: true,
+          props: {
+            label: 'name',
+            value: 'id'
+          },
           options: [
-            { label: '一班', value: 1 },
-            { label: '二班', value: 2 },
-            { label: '三班', value: 3 },
+            { name: '一班', id: 1 },
+            { name: '二班', id: 2 },
+            { name: '三班', id: 3 },
           ]
         }
       ],

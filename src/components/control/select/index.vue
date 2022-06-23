@@ -6,10 +6,10 @@
     <el-option
       v-for="item in option"
       :key="item.value"
-      :value="item.value"
-      :label="item.label"
+      :value="item[props.value]"
+      :label="item[props.label]"
     >
-      {{item.label}}
+      {{item[props.label]}}
     </el-option>
   </el-select>
 </template>
@@ -30,17 +30,23 @@ export default {
   data() {
     return {
       val: '',
-      option: []
+      option: [],
+      // 默认值
+      props: {
+        label: 'label',
+        value: 'value'
+      }
     }
   },
   watch: {
     config: {
       handler(newValue) {
         this.initOptions()
+        this.initProps()
       },
       immediate: true
     },
-    // 监听传进来的input初始值
+    // 监听传进来的初始值
     value: {
       handler(newValue) {
         this.val = newValue
@@ -52,6 +58,21 @@ export default {
     handlerChange(value) {
       // 同步更新父组件所绑定的字段的值
       this.$emit('update:value', value)
+    },
+    // label 和 value 的初始化
+    initProps() {
+      const option = this.config.props
+      // 默认值的key
+      const keys = Object.keys(this.props)
+      if (option && Object.prototype.toString.call(option) === '[object Object]') {
+        // 如果默认的key跟传进来的key不一样 则 替换掉默认的key
+        for (const key in option) {
+          if (keys.includes(key)) {
+            this.props[key] = option[key]
+            console.log(key)
+          }
+        }
+      }
     },
     // 初始化下拉数据
     initOptions() {
