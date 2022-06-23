@@ -1,6 +1,9 @@
 <template>
   <div>
-    <el-input v-model="val" />
+    <el-input
+      v-model="val"
+      @input="inputEnter"
+    />
   </div>
 </template>
 
@@ -27,6 +30,12 @@ export default {
       },
       immediate: true
     },
+  },
+  methods: {
+    inputEnter() {
+      // 同步更新父组件所绑定的字段的值
+      this.$emit('update:value', this.val)
+    }
   }
 }
 </script>

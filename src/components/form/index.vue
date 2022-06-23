@@ -13,7 +13,7 @@
         :prop="item.prop"
       >
         <component
-          :value="field[item.prop]"
+          :value.sync="field[item.prop]"
           :config="item"
           :is="!item.type ? 'com-text' : `com-${item.type}`"
         />
