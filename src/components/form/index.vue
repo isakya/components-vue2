@@ -6,7 +6,6 @@
   >
     <template v-for="item in item">
       <el-form-item
-        v-if="item.type === 'input'"
         :key="item.prop"
         :label="item.label"
         :rules="item.rules"
@@ -17,15 +16,6 @@
           :config="item"
           :is="!item.type ? 'com-text' : `com-${item.type}`"
         />
-      </el-form-item>
-      <el-form-item
-        v-if="item.type === 'select'"
-        :key="item.prop"
-        :rules="item.rules"
-        :label="item.label"
-        :prop="item.prop"
-      >
-        <el-select v-model="field[item.prop]"></el-select>
       </el-form-item>
     </template>
     <el-form-item>

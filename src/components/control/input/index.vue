@@ -26,7 +26,6 @@ export default {
     value: {
       handler(newValue) {
         this.val = newValue
-        console.log(newValue, 999)
       },
       immediate: true
     },

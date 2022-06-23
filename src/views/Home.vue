@@ -24,17 +24,15 @@ export default {
           required: true
         },
         {
-          type: 'input',
-          value_type: 'email',
-          prop: 'email',
-          label: '邮箱',
-          required: true,
-        },
-        {
           type: 'select',
-          prop: 'gender',
-          label: '性别',
-          required: true
+          prop: 'class_room',
+          label: '教室',
+          required: true,
+          options: [
+            { label: '一班', value: 1 },
+            { label: '二班', value: 2 },
+            { label: '三班', value: 3 },
+          ]
         }
       ],
       // 表单提交按钮
@@ -54,7 +52,7 @@ export default {
       ],
       form_field: {
         phone: '13333333333',
-        gender: ''
+        class_room: ''
       }
     }
   },

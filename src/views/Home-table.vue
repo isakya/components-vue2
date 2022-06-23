@@ -86,7 +86,6 @@ export default {
           label: '图片',
           prop: 'url',
           callback: (data) => {
-            console.log(data, 111)
             return `<a href="${data.url}">点击</a>`
           },
         },

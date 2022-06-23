@@ -23,7 +23,6 @@ const createRules = (data) => {
       rules_arr = rules_arr.concat(item.rules)
     }
     item.rules = rules_arr
-    console.log(item)
   })
   return data
 }
