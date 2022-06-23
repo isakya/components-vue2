@@ -29,7 +29,7 @@ const createRules = (data) => {
 
 const createMessage = (data) => {
   let msg = ''
-  switch (data.type) {
+  switch (data.type === 'slot' ? data.slot_type : data.type) {
     case 'input':
       msg = '请输入'
       break

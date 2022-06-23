@@ -50,6 +50,7 @@ export default {
         {
           type: 'slot',
           slot_name: 'classroom',
+          slot_type: 'select',
           prop: 'class_room1',
           label: '教室',
           required: true,
@@ -72,7 +73,8 @@ export default {
       ],
       form_field: {
         phone: '13333333333',
-        class_room: ''
+        class_room: '',
+        class_room1: ''
       },
       select_classroom: {
         init_request: true,
@@ -84,7 +86,10 @@ export default {
           value: 'id'
         },
         url: 'https://api.apiopen.top/api/getImages?page=0&size=5',
-        method: 'get'
+        method: 'get',
+        callback: (data) => {
+          return this.selectClassRoom(data)
+        }
       }
     }
   },
@@ -106,6 +111,10 @@ export default {
     },
     cancel(data) {
       console.log('取消', data)
+    },
+    selectClassRoom(data) {
+      this.form_field.class_room1 = data
+      console.log(data)
     }
   }
 }

@@ -90,6 +90,10 @@ export default {
     handlerChange(value) {
       // 同步更新父组件所绑定的字段的值
       this.$emit('update:value', value)
+      // 如果是插槽，则把选项数据传出去
+      if (this.config.callback) {
+        this.config.callback(value)
+      }
     },
     // label 和 value 的初始化
     initProps() {
