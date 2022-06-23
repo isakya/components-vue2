@@ -5,6 +5,8 @@
     :remote-method="keywordRequest"
     :filterable="fetchSearch"
     :remote="fetchSearch"
+    :multiple="multiple"
+    :collapse-tags="multiple"
   >
     <el-option
       v-for="item in option"
@@ -75,6 +77,11 @@ export default {
     // 搜索字段
     keyword() {
       return this.config?.keyword || 'keyword'
+    },
+    // 多选
+    multiple() {
+      return this.config?.multiple
+
     }
   },
   methods: {
