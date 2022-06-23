@@ -20,7 +20,10 @@
       ></slot>
     </el-option>
   </el-select> -->
-  <el-checkbox-group v-model="val">
+  <el-checkbox-group
+    v-model="val"
+    @change="handlerChange"
+  >
     <el-checkbox
       :label="item[props.value]"
       v-for="item in option"

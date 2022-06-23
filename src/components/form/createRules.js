@@ -14,7 +14,6 @@ const createRules = (data) => {
     }
     // 校验email
     if (item.value_type && item.value_type === 'email') {
-
       const rule = { validator: email, trigger: 'blur' }
       rules_arr.push(rule)
     }
@@ -34,6 +33,7 @@ const createMessage = (data) => {
       msg = '请输入'
       break
     case 'select':
+    case 'checkbox':
       msg = '请选择'
       break
   }

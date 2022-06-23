@@ -50,6 +50,7 @@ export default {
         {
           type: 'checkbox',
           prop: 'food',
+          required: true,
           label: '食物',
           options: [
             { label: '鸡蛋', value: 1 },
