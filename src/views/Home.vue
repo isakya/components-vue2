@@ -37,6 +37,15 @@ export default {
             { name: '二班', id: 2 },
             { name: '三班', id: 3 },
           ]
+        },
+        {
+          type: 'select',
+          prop: 'class_room1',
+          label: '教室',
+          required: true,
+          init_request: true,
+          url: '',
+          method: 'get'
         }
       ],
       // 表单提交按钮

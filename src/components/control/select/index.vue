@@ -69,18 +69,33 @@ export default {
         for (const key in option) {
           if (keys.includes(key)) {
             this.props[key] = option[key]
-            console.log(key)
           }
         }
       }
     },
+
     // 初始化下拉数据
     initOptions() {
+      const url = this.config.url
+      if (url) {
+        this.fetchOption()
+        return false
+      }
+
+
+
       const option = this.config.options
       if (option && Array.isArray(option) && option.length > 0) {
         this.option = option
       }
-    }
+    },
+    // 异步请求
+    fetchOption() {
+      const init_request = this.config.init_request
+      const url = this.config.url
+      const method = this.config.method
+      console.log(init_request, url, method)
+    },
   }
 }
 </script>
