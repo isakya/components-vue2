@@ -6,7 +6,11 @@
     :beforeSubmit="submitForm"
   >
     <template v-slot:classroom>
-      <i-select :config="select_classroom"></i-select>
+      <i-select :config="select_classroom">
+        <template v-slot:select="slot">
+          <div style="font-size: 20px;">{{slot.data.title}}</div>
+        </template>
+      </i-select>
     </template>
   </i-form>
 </template>
