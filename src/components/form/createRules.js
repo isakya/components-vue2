@@ -1,3 +1,4 @@
+import { phone, email } from '@/utils/validator'
 const createRules = (data) => {
   data.forEach(item => {
     // 检测规则是一个数组类型
@@ -8,28 +9,13 @@ const createRules = (data) => {
     }
     // 校验手机号
     if (item.value_type && item.value_type === 'phone') {
-      const reg = /^1[3456789]\d{9}$/
-      const phone = (rule, value, callback) => {
-        if (reg.test(value)) {
-          callback()
-        } else {
-          callback(new Error('请输入11位数字的手机号'))
-        }
-      }
       const rule = { validator: phone, trigger: 'change' }
       rules_arr.push(rule)
     }
     // 校验email
     if (item.value_type && item.value_type === 'email') {
-      const reg = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
-      const phone = (rule, value, callback) => {
-        if (reg.test(value)) {
-          callback()
-        } else {
-          callback(new Error('请输入正确的邮箱地址'))
-        }
-      }
-      const rule = { validator: phone, trigger: 'change' }
+
+      const rule = { validator: email, trigger: 'blur' }
       rules_arr.push(rule)
     }
     // 是否有额外的校验规则
