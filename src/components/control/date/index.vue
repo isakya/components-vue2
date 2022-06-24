@@ -6,6 +6,7 @@
     :start-placeholder="config.start_placeholder || '请选择开始日期'"
     :end-placeholder="config.end_placeholder || '请选择结束日期'"
     :range-separator="config.range || '-'"
+    :picker-options="pickerOptions()"
     @change="handlerChange"
   >
   </el-date-picker>
@@ -25,7 +26,23 @@ export default {
       val: '',
     }
   },
-
+  methods: {
+    pickerOptions() {
+      const disabled_data = this.config.disabled_data
+      const disabled_today = this.config.disabled_today
+      return {
+        disabledDate: (time) => {
+          if (disabled_data) {
+            return time.getTime() < new Date() - 8.64e7
+          } else if (disabled_today) {
+            return time.getTime() < new Date()
+          } else {
+            return false
+          }
+        }
+      }
+    }
+  }
 }
 </script>
 
