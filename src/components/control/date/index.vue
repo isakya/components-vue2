@@ -27,15 +27,20 @@ export default {
     }
   },
   methods: {
+    // 禁用日期配置
     pickerOptions() {
       const disabled_data = this.config.disabled_data
       const disabled_today = this.config.disabled_today
+      // 自定义禁用日期
+      const disabled_rule = this.config.disabled_rule && Object.prototype.toString.call(this.config.disabled_rule) === '[object Function]'
       return {
         disabledDate: (time) => {
           if (disabled_data) {
             return time.getTime() < new Date() - 8.64e7
           } else if (disabled_today) {
             return time.getTime() < new Date()
+          } else if (disabled_rule) {
+            return this.config.disabled_rule(time)
           } else {
             return false
           }

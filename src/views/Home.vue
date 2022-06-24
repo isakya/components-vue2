@@ -38,7 +38,10 @@ export default {
           model: 'datetimerange', //日期模式
           required: true,
           // disabled_data: true, // 只选择今天以及之后的日期
-          disabled_today: true, // 只能选择今天之后的日期
+          // disabled_today: true, // 只能选择今天之后的日期
+          disabled_rule: (time) => { // 自定义禁用日期配置
+            return time.getTime() > new Date()
+          },
           start_placeholder: '请选择开始创建日期',
           end_placeholder: '请选择结束创建日期',
           range: '至', // 中间间隔 默认为 '-'
