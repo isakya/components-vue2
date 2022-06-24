@@ -1,8 +1,9 @@
 <template>
   <el-upload
     class="avatar-uploader"
-    action="https://jsonplaceholder.typicode.com/posts/"
+    action="http://www.baidu.com"
     :show-file-list="false"
+    :http-request="handlerUpload"
   >
     <el-button
       v-if="model === 'button'"
@@ -38,6 +39,7 @@ export default {
   data() {
     return {
       val: '',
+      imageUrl: ''
     }
   },
   computed: {
@@ -51,6 +53,15 @@ export default {
     }
   },
   methods: {
+    handlerUpload(data) {
+      const file = data.file
+      console.log(file)
+      // 处理文件
+      // 接口请求
+      this.$axios('').then(res => {
+        this.option = res
+      })
+    }
   }
 }
 </script>
