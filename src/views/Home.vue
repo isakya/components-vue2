@@ -42,6 +42,7 @@ export default {
           disabled_rule: (time) => { // 自定义禁用日期配置
             return time.getTime() > new Date()
           },
+          format: 'yyyy/MM/dd HH:mm:ss', // 日期展示格式 默认为 -
           start_placeholder: '请选择开始创建日期',
           end_placeholder: '请选择结束创建日期',
           range: '至', // 中间间隔 默认为 '-'

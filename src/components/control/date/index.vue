@@ -7,6 +7,7 @@
     :end-placeholder="config.end_placeholder || '请选择结束日期'"
     :range-separator="config.range || '-'"
     :picker-options="pickerOptions()"
+    :format="config.format"
     @change="handlerChange"
   >
   </el-date-picker>
