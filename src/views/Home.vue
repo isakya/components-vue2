@@ -36,7 +36,9 @@ export default {
           type: 'upload',
           prop: 'file',
           label: '文件',
-          model: 'button'
+          model: 'card',
+          width: '150px',
+          height: '150px'
         },
         {
           type: 'date',
