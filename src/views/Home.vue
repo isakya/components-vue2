@@ -33,6 +33,13 @@ export default {
           required: true
         },
         {
+          type: 'date',
+          prop: 'createDate',
+          model: 'date', //日期模式
+          required: true,
+          label: '日期',
+        },
+        {
           type: 'select',
           prop: 'class_room',
           label: '教室',
@@ -98,7 +105,8 @@ export default {
         class_room: '',
         class_room1: '',
         food: [1, 2],
-        car: 1
+        car: 1,
+        createDate: ''
       },
       select_classroom: {
         init_request: true,
