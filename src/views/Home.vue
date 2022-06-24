@@ -33,6 +33,11 @@ export default {
           required: true
         },
         {
+          type: 'upload',
+          prop: 'file',
+          label: '文件',
+        },
+        {
           type: 'date',
           prop: 'createDate',
           model: 'datetimerange', //日期模式
@@ -115,7 +120,8 @@ export default {
         class_room1: '',
         food: [1, 2],
         car: 1,
-        createDate: ''
+        createDate: '',
+        file: ''
       },
       select_classroom: {
         init_request: true,
