@@ -35,8 +35,11 @@ export default {
         {
           type: 'date',
           prop: 'createDate',
-          model: 'date', //日期模式
+          model: 'datetimerange', //日期模式
           required: true,
+          start_placeholder: '请选择开始创建日期',
+          end_placeholder: '请选择结束创建日期',
+          range: '至', // 中间间隔 默认为 '-'
           label: '日期',
         },
         {
