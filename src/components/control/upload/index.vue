@@ -27,6 +27,7 @@
       <div
         v-if="model === 'card'"
         class="upload-wrap"
+        :class="{'is-round':isRound}"
         :style="[sizeStyle]"
       >
         <img
@@ -67,6 +68,9 @@ export default {
       const width = this.config?.width || '100px'
       const height = this.config?.height || '100px'
       return { width, height }
+    },
+    isRound() {
+      return this.config?.round || false
     }
   },
   methods: {
@@ -161,5 +165,8 @@ export default {
   &:hover {
     color: #409eff;
   }
+}
+.is-round {
+  border-radius: 50%;
 }
 </style>

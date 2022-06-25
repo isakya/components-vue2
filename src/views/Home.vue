@@ -45,7 +45,8 @@ export default {
           multiple: true, // 是否上传多个文件
           limit: 3, // 限制文件数量
           max_size: 2, // 限制文件大小
-          show_file: true // 是否显示上传文件列表
+          show_file: true, // 是否显示上传文件列表
+          round: true, // 是否为圆形
         },
         // {
         //   type: 'date',
