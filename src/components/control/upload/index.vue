@@ -16,6 +16,8 @@
       :style="[sizeStyle]"
     >
       <img
+        width="100%"
+        height="100%"
         v-if="imageUrl"
         :src="imageUrl"
       >
@@ -49,17 +51,27 @@ export default {
     sizeStyle() {
       const width = this.config?.width || '100px'
       const height = this.config?.height || '100px'
-      return { width, height, }
+      return { width, height }
     }
   },
   methods: {
     handlerUpload(data) {
       const file = data.file
-      console.log(file)
-      // 处理文件
+      // form
+      const form = new FormData()
+      form.append('file', file)
+      const request_data = {
+        url: this.url,
+        method: this.method,
+        headers: {
+          'Content-Type': 'mutipart/form-data'
+        },
+        data: form
+      }
       // 接口请求
-      this.$axios('').then(res => {
-        this.option = res
+      this.$axios(request_data).then(res => {
+        // 将图片回显至选择框
+        this.imageUrl = res.data.data.img_url
       })
     }
   }
