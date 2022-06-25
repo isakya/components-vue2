@@ -1,14 +1,12 @@
 <template>
   <div class="upload-box">
-    <i
-      v-if="imageUrl"
-      class="el-icon-delete"
-      @click="clear"
-    ></i>
     <el-upload
       class="avatar-uploader"
       action="http://www.baidu.com"
-      :show-file-list="false"
+      :show-file-list="config.show_file"
+      :on-remove="handlerRemove"
+      :before-remove="handlerBeforeRemove"
+      :on-preview="handlerPerview"
       :http-request="handlerUpload"
       :accept="config.accept"
       :multiple="multiple"
@@ -16,6 +14,11 @@
       :on-exceed="handlerExceed"
       :before-upload="handlerBeforeUpload"
     >
+      <i
+        v-if="imageUrl"
+        class="el-icon-delete"
+        @click.stop="clear"
+      ></i>
       <el-button
         v-if="model === 'button'"
         size="small"
@@ -99,7 +102,33 @@ export default {
       const isLt2M = file.size / 1024 / 1024 < this.config.max_size
       !isLt2M && this.$message.error(`请上传小于${this.config.max_size}M的文件`)
       return isLt2M
+    },
+    // 选择文件列表
+    handlerPerview(file) {
+      console.log(file)
+    },
+    // 删除动作
+    // 删除文件列表之前要做的事
+    handlerBeforeRemove() {
+      return new Promise((resolve, reject) => {
+        this.$confirm('是否删除文件', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          center: true
+        }).then(() => {
+          resolve()
+        }).catch(() => {
+          reject()
+        })
+      })
 
+      // 返回false 或 reject则不会向下执行删除操作
+      // return false
+    },
+    // 删除文件列表时要做的事
+    handlerRemove() {
+      console.log(123)
     }
   }
 }
