@@ -14,6 +14,7 @@
       :multiple="multiple"
       :limit="config.limit || 1"
       :on-exceed="handlerExceed"
+      :before-upload="handlerBeforeUpload"
     >
       <el-button
         v-if="model === 'button'"
@@ -91,6 +92,14 @@ export default {
     // 超出选择数量
     handlerExceed() {
       console.log('超出数量')
+    },
+    // 限制文件大小
+    handlerBeforeUpload(file) {
+      // 判断文件是否小于2M
+      const isLt2M = file.size / 1024 / 1024 < this.config.max_size
+      !isLt2M && this.$message.error(`请上传小于${this.config.max_size}M的文件`)
+      return isLt2M
+
     }
   }
 }

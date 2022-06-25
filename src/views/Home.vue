@@ -43,7 +43,8 @@ export default {
           method: 'post',
           accept: '.zip, .rar, .jpg',
           multiple: true,
-          limit: 3
+          limit: 3,
+          max_size: 2
         },
         // {
         //   type: 'date',
