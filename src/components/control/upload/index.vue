@@ -1,32 +1,39 @@
 <template>
-  <el-upload
-    class="avatar-uploader"
-    action="http://www.baidu.com"
-    :show-file-list="false"
-    :http-request="handlerUpload"
-  >
-    <el-button
-      v-if="model === 'button'"
-      size="small"
-      type="primary"
-    >点击上传</el-button>
-    <div
-      v-if="model === 'card'"
-      class="upload-wrap"
-      :style="[sizeStyle]"
+  <div class="upload-box">
+    <i
+      v-if="imageUrl"
+      class="el-icon-delete"
+      @click="clear"
+    ></i>
+    <el-upload
+      class="avatar-uploader"
+      action="http://www.baidu.com"
+      :show-file-list="false"
+      :http-request="handlerUpload"
     >
-      <img
-        width="100%"
-        height="100%"
-        v-if="imageUrl"
-        :src="imageUrl"
+      <el-button
+        v-if="model === 'button'"
+        size="small"
+        type="primary"
+      >点击上传</el-button>
+      <div
+        v-if="model === 'card'"
+        class="upload-wrap"
+        :style="[sizeStyle]"
       >
-      <i
-        v-else
-        class="el-icon-plus avatar-uploader-icon"
-      ></i>
-    </div>
-  </el-upload>
+        <img
+          width="100%"
+          height="100%"
+          v-if="imageUrl"
+          :src="imageUrl"
+        >
+        <i
+          v-else
+          class="el-icon-plus avatar-uploader-icon"
+        ></i>
+      </div>
+    </el-upload>
+  </div>
 </template>
 
 <script>
@@ -41,7 +48,7 @@ export default {
   data() {
     return {
       val: '',
-      imageUrl: ''
+      imageUrl: '111'
     }
   },
   computed: {
@@ -73,6 +80,9 @@ export default {
         // 将图片回显至选择框
         this.imageUrl = res.data.data.img_url
       })
+    },
+    clear() {
+      this.imageUrl = ''
     }
   }
 }
@@ -90,6 +100,20 @@ export default {
   overflow: hidden;
   &:hover {
     border-color: #409eff;
+  }
+}
+.upload-box {
+  display: inline-block;
+  position: relative;
+}
+.el-icon-delete {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 1000;
+  cursor: pointer;
+  &:hover {
+    color: #409eff;
   }
 }
 </style>
