@@ -10,6 +10,10 @@
       action="http://www.baidu.com"
       :show-file-list="false"
       :http-request="handlerUpload"
+      :accept="config.accept"
+      :multiple="multiple"
+      :limit="config.limit || 1"
+      :on-exceed="handlerExceed"
     >
       <el-button
         v-if="model === 'button'"
@@ -83,6 +87,10 @@ export default {
     },
     clear() {
       this.imageUrl = ''
+    },
+    // 超出选择数量
+    handlerExceed() {
+      console.log('超出数量')
     }
   }
 }

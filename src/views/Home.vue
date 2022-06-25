@@ -40,7 +40,10 @@ export default {
           width: '150px',
           height: '150px',
           url: '/api/upload',
-          method: 'post'
+          method: 'post',
+          accept: '.zip, .rar, .jpg',
+          multiple: true,
+          limit: 3
         },
         // {
         //   type: 'date',
