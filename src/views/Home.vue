@@ -40,7 +40,10 @@ export default {
           send_account: '', // 传入输入的账号
           prop: 'code',
           label: '验证码',
-          required: true
+          required: true,
+          beforeChange: () => {
+            return this.apiGetSms()
+          }
         },
         {
           type: 'upload',
@@ -196,6 +199,14 @@ export default {
     },
     phoneEnter(val) {
       this.form_item[1].send_account = val
+    },
+    apiGetSms() {
+      return new Promise((resolve, reject) => {
+        this.$axios('/api/code/').then(response => {
+          this.$message.success(response.data)
+          resolve()
+        })
+      })
     }
   }
 }

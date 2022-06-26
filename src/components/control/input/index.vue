@@ -12,7 +12,9 @@
       <i-button
         size="mini"
         type="primary"
-      >获取验证码</i-button>
+        :loading="loading"
+        :disabled="disabled"
+      >{{text}}</i-button>
     </div>
   </div>
 </template>
@@ -33,7 +35,14 @@ export default {
   },
   data() {
     return {
-      val: ''
+      val: '',
+      // 验证码规则
+      text: '获取验证码',
+      loading: false,
+      s: 60,
+      disabled: false,
+      // 定时器
+      timer: null
     }
   },
   watch: {
@@ -54,12 +63,42 @@ export default {
         this.config.callback(this.val)
       }
     },
+    // 调用接口获取验证码
     getSms() {
-      console.log(this.config.send_account)
       if (!this.config.send_account) {
         alert('请输入手机号')
         return false
       }
+      if (this.config.beforeChange && Object.prototype.toString.call(this.config.beforeChange) === '[object Function]') {
+        this.text = '发送中'
+        this.loading = true
+        this.config.beforeChange(this.val).then(() => {
+          this.text = `倒计时${this.s}秒`
+          this.loading = true
+          this.disabled = true
+          // 倒计时函数
+          this.countDown()
+        }).catch(() => {
+          this.text = `重新获取`
+          this.disabled = false
+        })
+      }
+    },
+    countDown() {
+      // 定时器存在先清除
+      if (this.timer) {
+        clearInterval(this.timer)
+      }
+      setInterval(() => {
+        this.text = `倒计时${this.s}秒`
+        if (this.s <= 0) {
+          clearInterval(this.timer)
+          this.timer = null
+          this.text = `重新获取`
+          this.disabled = false
+          this.s = 60
+        }
+      }, 1000)
     }
   }
 }
