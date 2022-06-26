@@ -4,25 +4,30 @@
     :model="field"
     label-width="80px"
   >
-    <template v-for="item in item">
-      <el-form-item
+    <el-row :gutter="30">
+      <el-col
+        :span="12"
+        v-for="item in item"
         :key="item.prop"
-        :label="item.label"
-        :rules="item.rules"
-        :prop="item.prop"
       >
-        <slot
-          v-if="item.type === 'slot'"
-          :name="item.slot_name"
-        ></slot>
-        <component
-          v-else
-          :value.sync="field[item.prop]"
-          :config="item"
-          :is="!item.type ? 'com-text' : `com-${item.type}`"
-        />
-      </el-form-item>
-    </template>
+        <el-form-item
+          :label="item.label"
+          :rules="item.rules"
+          :prop="item.prop"
+        >
+          <slot
+            v-if="item.type === 'slot'"
+            :name="item.slot_name"
+          ></slot>
+          <component
+            v-else
+            :value.sync="field[item.prop]"
+            :config="item"
+            :is="!item.type ? 'com-text' : `com-${item.type}`"
+          />
+        </el-form-item>
+      </el-col>
+    </el-row>
     <el-form-item>
       <i-button
         :loading="item.loading"

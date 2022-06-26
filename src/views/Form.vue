@@ -5,22 +5,22 @@
     :button="form_button"
     :beforeSubmit="submitForm"
   >
-    <!-- <template v-slot:classroom>
+    <template v-slot:classroom>
       <i-select :config="select_classroom">
         <template v-slot:select="slot">
           <div style="font-size: 20px;">{{slot.data.title}}</div>
         </template>
       </i-select>
-    </template> -->
+    </template>
   </i-form>
 </template>
 
 <script>
 export default {
-  name: 'Home',
+  name: 'Form',
   components: {
     'i-form': () => import('@/components/form'),
-    // 'i-select': () => import('@/components/control/select')
+    'i-select': () => import('@/components/control/select')
   },
   data() {
     return {

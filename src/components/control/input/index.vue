@@ -68,7 +68,7 @@ export default {
     'config.value_type': {
       handler(value) {
         if (['password', 'passwords'].includes(value)) {
-          this.type = value
+          this.type = 'password'
         }
       },
       immediate: true

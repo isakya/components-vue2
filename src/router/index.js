@@ -9,6 +9,13 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/',
+    name: 'Form',
+    component: () => {
+      import('../views/Form.vue')
+    }
   }
 ]
 
