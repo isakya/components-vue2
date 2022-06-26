@@ -32,9 +32,11 @@ export default {
           label: '手机号',
           required: true
         },
+        // 验证码
         {
           type: 'input',
           value_type: 'sendcode',
+          send_account: '', // 传入输入的账号
           prop: 'code',
           label: '验证码',
           required: true
@@ -139,7 +141,8 @@ export default {
         food: [1, 2],
         car: 1,
         createDate: '',
-        file: ''
+        file: '',
+        code: ''
       },
       select_classroom: {
         init_request: true,
@@ -155,6 +158,13 @@ export default {
         callback: (data) => {
           return this.selectClassRoom(data)
         }
+      }
+    }
+  },
+  watch: {
+    'form_field.phone': {
+      handler(value) {
+        console.log(value)
       }
     }
   },

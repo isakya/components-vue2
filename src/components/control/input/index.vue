@@ -4,7 +4,11 @@
       v-model="val"
       @input="inputEnter"
     />
-    <div class="code-button">
+    <div
+      class="code-button"
+      v-if="config.value_type === 'sendcode'"
+      @click="getSms"
+    >
       <i-button
         size="mini"
         type="primary"
@@ -14,13 +18,15 @@
 </template>
 
 <script>
+import { props } from '../basis'
 export default {
   name: 'inputComponent',
   props: {
     value: {
       type: [String, Number],
       default: ''
-    }
+    },
+    ...props
   },
   components: {
     'i-button': () => import('@/components/button')
@@ -43,6 +49,12 @@ export default {
     inputEnter() {
       // 同步更新父组件所绑定的字段的值
       this.$emit('update:value', this.val)
+    },
+    getSms() {
+      if (this.config.send_account) {
+        alert('请输入手机号')
+        return false
+      }
     }
   }
 }
