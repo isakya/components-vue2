@@ -1,6 +1,7 @@
 <template>
   <div class="relative">
     <el-input
+      :type=" type"
       v-model="val"
       @input="inputEnter"
     />
@@ -15,6 +16,12 @@
         :loading="loading"
         :disabled="disabled"
       >{{text}}</i-button>
+    </div>
+    <div
+      class="eye-wrap"
+      v-if="config.value_type=== 'password'"
+    >
+      <i class="iconfont icon-eye-close"></i>
     </div>
   </div>
 </template>
@@ -38,6 +45,7 @@ export default {
       val: '',
       // 验证码规则
       text: '获取验证码',
+      type: 'text',
       loading: false,
       s: 60,
       disabled: false,
@@ -53,6 +61,14 @@ export default {
       },
       immediate: true
     },
+    'config.value_type': {
+      handler(value) {
+        if (value === 'password') {
+          this.type = value
+        }
+      },
+      immediate: true
+    }
   },
   methods: {
     inputEnter() {
@@ -109,5 +125,14 @@ export default {
   position: absolute;
   right: 10px;
   top: 0;
+}
+.eye-wrap {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  cursor: pointer;
+  > i {
+    font-size: 18px;
+  }
 }
 </style>

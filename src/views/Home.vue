@@ -33,6 +33,14 @@ export default {
           required: true,
           callback: (data) => this.phoneEnter(data)
         },
+        // 密码
+        {
+          type: 'input',
+          value_type: 'password',
+          prop: 'pwd',
+          label: '密码',
+          required: true,
+        },
         // 验证码
         {
           type: 'input',
@@ -146,7 +154,8 @@ export default {
         car: 1,
         createDate: '',
         file: '',
-        code: ''
+        code: '',
+        pwd: ''
       },
       select_classroom: {
         init_request: true,
