@@ -1,9 +1,15 @@
 <template>
-  <div>
+  <div class="relative">
     <el-input
       v-model="val"
       @input="inputEnter"
     />
+    <div class="code-button">
+      <i-button
+        size="mini"
+        type="primary"
+      >获取验证码</i-button>
+    </div>
   </div>
 </template>
 
@@ -15,6 +21,9 @@ export default {
       type: [String, Number],
       default: ''
     }
+  },
+  components: {
+    'i-button': () => import('@/components/button')
   },
   data() {
     return {
@@ -39,5 +48,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.code-button {
+  position: absolute;
+  right: 10px;
+  top: 0;
+}
 </style>

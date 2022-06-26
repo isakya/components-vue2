@@ -15,6 +15,7 @@ $button-round: 4px !default;
   font-size: 14px;
   color: #606266;
   height: 40px;
+  cursor: pointer;
   // 兄弟元素会添加边距 第一个就不会有边距
   + .i-button {
     margin-left: $button-space;

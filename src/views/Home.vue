@@ -33,6 +33,13 @@ export default {
           required: true
         },
         {
+          type: 'input',
+          value_type: 'sendcode',
+          prop: 'code',
+          label: '验证码',
+          required: true
+        },
+        {
           type: 'upload',
           prop: 'file',
           label: '文件',
