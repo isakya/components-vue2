@@ -49,9 +49,14 @@ export default {
     inputEnter() {
       // 同步更新父组件所绑定的字段的值
       this.$emit('update:value', this.val)
+      // 判断是否有回调函数
+      if (this.config.callback && Object.prototype.toString.call(this.config.callback) === '[object Function]') {
+        this.config.callback(this.val)
+      }
     },
     getSms() {
-      if (this.config.send_account) {
+      console.log(this.config.send_account)
+      if (!this.config.send_account) {
         alert('请输入手机号')
         return false
       }

@@ -30,7 +30,8 @@ export default {
           value_type: 'phone',
           prop: 'phone',
           label: '手机号',
-          required: true
+          required: true,
+          callback: (data) => this.phoneEnter(data)
         },
         // 验证码
         {
@@ -161,13 +162,15 @@ export default {
       }
     }
   },
-  watch: {
-    'form_field.phone': {
-      handler(value) {
-        console.log(value)
-      }
-    }
-  },
+  // watch: {
+  //   'form_field.phone': {
+  //     handler(value) {
+  //       this.form_item[1].send_account = value
+  //       console.log(value)
+  //     },
+  //     immediate: true
+  //   }
+  // },
   methods: {
     submitForm() {
       return new Promise((resolve, reject) => {
@@ -190,6 +193,9 @@ export default {
     selectClassRoom(data) {
       this.form_field.class_room1 = data
       console.log(data)
+    },
+    phoneEnter(val) {
+      this.form_item[1].send_account = val
     }
   }
 }
