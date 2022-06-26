@@ -76,7 +76,7 @@ export default {
   },
   computed: {
     eye() {
-      return ['password', 'passwords'].includes(this.type) ? 'icon-eye-close' : 'icon-browse'
+      return this.type === 'password' ? 'icon-eye-close' : 'icon-browse'
     }
   },
   methods: {

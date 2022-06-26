@@ -1,5 +1,5 @@
-import { phone, email } from '@/utils/validator'
-const createRules = (data) => {
+import { phone, email, validatorPwd } from '@/utils/validator'
+const createRules = (data, field) => {
   data.forEach(item => {
     // 检测规则是一个数组类型
     let rules_arr = []
@@ -15,6 +15,42 @@ const createRules = (data) => {
     // 校验email
     if (item.value_type && item.value_type === 'email') {
       const rule = { validator: email, trigger: 'blur' }
+      rules_arr.push(rule)
+    }
+    // 校验密码
+    if (item.value_type && item.value_type === 'password') {
+      const validatorPassword = (rule, value, callback) => {
+        if (!value) {
+          callback(new Error('请输入密码'))
+        } else if (!validatorPwd(value)) {
+          callback(new Error('请输入长度至少为8，且至少有一个数字 并同时包含大小写字母'))
+        } else {
+          callback()
+        }
+      }
+      const rule = { validator: validatorPassword, trigger: 'change' }
+      rules_arr.push(rule)
+    }
+    // 校验确认密码
+    if (item.value_type && item.value_type === 'passwords') {
+      // 获取密码配置
+      const p1 = data.filter(item => item.value_type === 'password')[0]
+      const validatorPassword = (rule, value, callback) => {
+        // 拿到密码值
+        const p1_value = field[p1.prop]
+        console.log(p1_value)
+        if (!value) {
+          callback(new Error('请输入密码'))
+        } else if (!validatorPwd(value)) {
+          callback(new Error('请输入长度至少为8，且至少有一个数字 并同时包含大小写字母'))
+        } else if (p1_value && p1_value !== value) {
+          callback(new Error('确认密码不一致'))
+        }
+        else {
+          callback()
+        }
+      }
+      const rule = { validator: validatorPassword, trigger: 'change' }
       rules_arr.push(rule)
     }
     // 是否有额外的校验规则

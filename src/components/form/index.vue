@@ -78,7 +78,7 @@ export default {
     }
   },
   beforeMount() {
-    this.form_item = createRules(this.item)
+    this.form_item = createRules(this.item, this.field)
   },
   methods: {
     handlerBtn(data) {

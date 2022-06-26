@@ -163,7 +163,8 @@ export default {
         createDate: '',
         file: '',
         code: '',
-        pwd: ''
+        pwd: '',
+        ps: '' // 确认密码
       },
       select_classroom: {
         init_request: true,
