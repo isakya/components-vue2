@@ -41,6 +41,14 @@ export default {
           label: '密码',
           required: true,
         },
+        // 确认密码
+        {
+          type: 'input',
+          value_type: 'passwords',
+          prop: 'ps',
+          label: '确认密码',
+          required: true,
+        },
         // 验证码
         {
           type: 'input',

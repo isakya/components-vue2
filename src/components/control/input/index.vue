@@ -19,9 +19,13 @@
     </div>
     <div
       class="eye-wrap"
-      v-if="config.value_type=== 'password'"
+      v-if="['password','passwords'].includes(config.value_type)"
     >
-      <i class="iconfont icon-eye-close"></i>
+      <i
+        class="iconfont"
+        :class="eye"
+        @click="toggleValueType"
+      ></i>
     </div>
   </div>
 </template>
@@ -63,11 +67,16 @@ export default {
     },
     'config.value_type': {
       handler(value) {
-        if (value === 'password') {
+        if (['password', 'passwords'].includes(value)) {
           this.type = value
         }
       },
       immediate: true
+    }
+  },
+  computed: {
+    eye() {
+      return ['password', 'passwords'].includes(this.type) ? 'icon-eye-close' : 'icon-browse'
     }
   },
   methods: {
@@ -78,6 +87,10 @@ export default {
       if (this.config.callback && Object.prototype.toString.call(this.config.callback) === '[object Function]') {
         this.config.callback(this.val)
       }
+    },
+    // 切换文本类型
+    toggleValueType() {
+      this.type = this.type === 'password' ? 'text' : 'password'
     },
     // 调用接口获取验证码
     getSms() {
